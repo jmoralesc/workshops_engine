@@ -21,7 +21,6 @@ module WorkshopsEngine
     def create
       @workshop = Workshop.new(workshop_params)
       if @workshop.save
-        binding.pry
         redirect_to workshops_url, notice: 'Workshop was successfully created.'
    else
         render :new
@@ -48,7 +47,11 @@ module WorkshopsEngine
     end
     
     def workshop_params
-      params.require(:workshop).permit(:title, :description, :date_and_time, :user_id)
+      params.require(:workshop).permit(:title,
+                                       :description,
+                                       :date_and_time,
+                                       :user_id,
+                                       :is_published)
     end
   end
 end
